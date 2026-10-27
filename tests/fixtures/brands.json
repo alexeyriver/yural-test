@@ -1,0 +1,379 @@
+{
+  "goods": [
+    {
+      "brand": "OSSCA",
+      "count": 20,
+      "goodsID": "84DF819C-9220-11E2-8716-0015179B1A7D",
+      "name": "Стеклоподъемник задний левый",
+      "number": "01089",
+      "price": 1067.26,
+      "rate": 1,
+      "warehouses": [
+        {
+          "code": "МСК РС",
+          "id": "828D8BBA-63BC-11F0-A7F7-FEFBE46398F2",
+          "own": false,
+          "price": 1067.26,
+          "shipmentDate": "2026-10-30T12:20:00+03:00",
+          "stock": 10,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "МСК РС",
+          "id": "365F8671-7BA2-11ED-A7BC-00155D1F6C08",
+          "own": false,
+          "price": 1067.26,
+          "shipmentDate": "2026-10-30T13:40:00+03:00",
+          "stock": 10,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        }
+      ]
+    },
+    {
+      "brand": "AP",
+      "count": 0,
+      "goodsID": "2B6BB13A-3A1E-4A7E-A2D4-3A8123E7C221",
+      "name": "Колодки тормозные барабанные",
+      "number": "01089",
+      "price": 1505.8,
+      "rate": 1,
+      "warehouses": []
+    },
+    {
+      "brand": "ASAM",
+      "count": 29,
+      "goodsID": "5BB27C91-FAF7-4CED-ABB7-A267C6F98AFE",
+      "name": "Фильтр топливный renault 19",
+      "number": "01089",
+      "price": 86.88,
+      "rate": 1,
+      "warehouses": [
+        {
+          "code": "СПБ",
+          "id": "49BE7207-1EDD-11F1-AA2A-6CFE543051E5",
+          "own": true,
+          "price": 86.88,
+          "shipmentDate": "2026-10-29T20:00:00+03:00",
+          "stock": 1,
+          "warehouseShipping": "29107E16-1EA5-11F1-AA2A-6CFE543051E5"
+        },
+        {
+          "code": "ДМД",
+          "id": "9FB93976-798B-11EF-A7DE-F0A13A39C8A2",
+          "own": true,
+          "price": 86.88,
+          "shipmentDate": "2026-10-28T20:00:00+03:00",
+          "stock": 28,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        }
+      ]
+    },
+    {
+      "brand": "Meat & Doria",
+      "count": 9,
+      "goodsID": "D8CDF5ED-014E-44EE-B71D-0AB6F23E3688",
+      "name": "Прокладка",
+      "number": "01089",
+      "price": 344,
+      "rate": 1,
+      "warehouses": [
+        {
+          "code": "ДМД",
+          "id": "9FB93976-798B-11EF-A7DE-F0A13A39C8A2",
+          "own": true,
+          "price": 344,
+          "shipmentDate": "2026-10-28T20:00:00+03:00",
+          "stock": 9,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        }
+      ]
+    },
+    {
+      "brand": "FEBI",
+      "count": 793,
+      "goodsID": "B4BE9EEB-8139-11DB-BF1F-505054503030",
+      "name": "Антифриз (синий) 1,5 л. G11",
+      "number": "01089",
+      "price": 1084.23,
+      "rate": 1,
+      "warehouses": [
+        {
+          "code": "МСК РС",
+          "id": "624BDAB3-63B3-11F0-A7F7-FEFBE46398F2",
+          "own": false,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T08:30:00+03:00",
+          "stock": 9,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "МСК РС",
+          "id": "B1CC7708-660F-11F0-A7F8-D4F468C486F9",
+          "own": false,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T14:30:00+03:00",
+          "stock": 4,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "ЯРС",
+          "id": "4E0B5D27-D911-11ED-A7C3-00155D1F6C08",
+          "own": true,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T20:00:00+03:00",
+          "stock": 8,
+          "warehouseShipping": "C5502880-D8DE-11ED-A7C3-00155D1F6C08"
+        },
+        {
+          "code": "СПБ",
+          "id": "49BE7207-1EDD-11F1-AA2A-6CFE543051E5",
+          "own": true,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T20:00:00+03:00",
+          "stock": 2,
+          "warehouseShipping": "29107E16-1EA5-11F1-AA2A-6CFE543051E5"
+        },
+        {
+          "code": "МСК РС",
+          "id": "434CFB2C-62F6-11F0-A7F7-FEFBE46398F2",
+          "own": false,
+          "price": 1161.6,
+          "shipmentDate": "2026-10-29T15:30:00+03:00",
+          "stock": 120,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "СПБ РС",
+          "id": "BE3A436E-D5C3-11EC-A7B5-00155D1F6C08",
+          "own": false,
+          "price": 1314,
+          "shipmentDate": "2026-10-30T11:30:00+03:00",
+          "stock": 50,
+          "warehouseShipping": "29107E16-1EA5-11F1-AA2A-6CFE543051E5"
+        },
+        {
+          "code": "НН",
+          "id": "AAA1D7D7-37A5-11EF-A7D6-8DAB4C289914",
+          "own": true,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T20:00:00+03:00",
+          "stock": 7,
+          "warehouseShipping": "41A5DBC3-1384-11EF-A7D5-D7E337AD9FE5"
+        },
+        {
+          "code": "МСК РС",
+          "id": "B2798976-67D4-11F0-A7F8-D4F468C486F9",
+          "own": false,
+          "price": 1084.23,
+          "shipmentDate": "2026-10-29T12:20:00+03:00",
+          "stock": 120,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "КРН",
+          "id": "717DDA55-210D-11E8-813E-0050568E1762",
+          "own": true,
+          "price": 1082,
+          "shipmentDate": "2026-10-30T13:00:00+03:00",
+          "stock": 1,
+          "warehouseShipping": "63E28567-1AD5-11E8-813C-0050568E1762"
+        },
+        {
+          "code": "КРН РС",
+          "id": "4540E922-9B00-11F1-AA2E-6CFE543051E4",
+          "own": false,
+          "price": 1161.6,
+          "shipmentDate": "2026-11-02T12:30:00+03:00",
+          "stock": 4,
+          "warehouseShipping": "63E28567-1AD5-11E8-813C-0050568E1762"
+        },
+        {
+          "code": "РНД",
+          "id": "C06817A4-E6A7-11EE-A7D0-F0FED951D48A",
+          "own": true,
+          "price": 1082,
+          "shipmentDate": "2026-10-30T20:00:00+03:00",
+          "stock": 6,
+          "warehouseShipping": "1A96D570-D0B7-11EE-A7D0-F0FED951D48A"
+        },
+        {
+          "code": "РНД РС",
+          "id": "7A95CE56-A2B9-11F1-AA2E-6CFE543051E4",
+          "own": false,
+          "price": 1120.79,
+          "shipmentDate": "2026-10-31T09:00:00+03:00",
+          "stock": 120,
+          "warehouseShipping": "63E28567-1AD5-11E8-813C-0050568E1762"
+        },
+        {
+          "code": "МСК РС",
+          "id": "97857783-63B7-11F0-A7F7-FEFBE46398F2",
+          "own": false,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T11:40:00+03:00",
+          "stock": 120,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "МСК РС",
+          "id": "C1F14CDF-B0F3-11F1-AA2E-6CFE543051E4",
+          "own": false,
+          "price": 1161.6,
+          "shipmentDate": "2026-10-31T10:40:00+03:00",
+          "stock": 4,
+          "warehouseShipping": "1A96D570-D0B7-11EE-A7D0-F0FED951D48A"
+        },
+        {
+          "code": "ВРН",
+          "id": "6B7750D5-7D13-11EC-A370-005056802F4C",
+          "own": true,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T20:00:00+03:00",
+          "stock": 2,
+          "warehouseShipping": "55F58941-572F-11EC-A36C-005056802F4C"
+        },
+        {
+          "code": "ЯРС РС",
+          "id": "8A2878A0-585D-11EE-A7C8-00155D1F6C08",
+          "own": false,
+          "price": 1163.27,
+          "shipmentDate": "2026-10-30T15:30:00+03:00",
+          "stock": 4,
+          "warehouseShipping": "C5502880-D8DE-11ED-A7C3-00155D1F6C08"
+        },
+        {
+          "code": "МСК РС",
+          "id": "F54C8DC3-D1E1-11F0-A80D-9011D1D0CCF5",
+          "own": false,
+          "price": 1082,
+          "shipmentDate": "2026-10-30T15:30:00+03:00",
+          "stock": 2,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "ДМД",
+          "id": "9FB93976-798B-11EF-A7DE-F0A13A39C8A2",
+          "own": true,
+          "price": 1082,
+          "shipmentDate": "2026-10-28T20:00:00+03:00",
+          "stock": 37,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "МСК РС",
+          "id": "D0046621-6612-11F0-A7F8-D4F468C486F9",
+          "own": false,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T08:30:00+03:00",
+          "stock": 120,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "МСК РС",
+          "id": "852B801C-62FE-11F0-A7F7-FEFBE46398F2",
+          "own": false,
+          "price": 1082,
+          "shipmentDate": "2026-10-29T09:15:00+03:00",
+          "stock": 53,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        }
+      ]
+    },
+    {
+      "brand": "GLASER",
+      "count": 29,
+      "goodsID": "8CD44D7E-813C-11DB-BF1F-505054503030",
+      "name": "Прокладка ГБЦ",
+      "number": "H01089-00",
+      "price": 1203.89,
+      "rate": 1,
+      "warehouses": [
+        {
+          "code": "СПБ РС",
+          "id": "4D4F51AD-396F-11F1-AA2E-6CFE543051E4",
+          "own": false,
+          "price": 1251.6,
+          "shipmentDate": "2026-11-02T13:30:00+03:00",
+          "stock": 7,
+          "warehouseShipping": "29107E16-1EA5-11F1-AA2A-6CFE543051E5"
+        },
+        {
+          "code": "МСК РС",
+          "id": "076D9436-5B24-11F0-A7F6-DC72C0A5052E",
+          "own": false,
+          "price": 1184.38,
+          "shipmentDate": "2026-10-30T13:30:00+03:00",
+          "stock": 7,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "СПБ РС",
+          "id": "DB1F1AC9-39A8-11F1-AA2E-6CFE543051E4",
+          "own": false,
+          "price": 1184.38,
+          "shipmentDate": "2026-10-31T13:30:00+03:00",
+          "stock": 7,
+          "warehouseShipping": "29107E16-1EA5-11F1-AA2A-6CFE543051E5"
+        },
+        {
+          "code": "МСК РС",
+          "id": "828D8BBA-63BC-11F0-A7F7-FEFBE46398F2",
+          "own": false,
+          "price": 1203.89,
+          "shipmentDate": "2026-10-30T12:20:00+03:00",
+          "stock": 7,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        },
+        {
+          "code": "МСК РС",
+          "id": "365F8671-7BA2-11ED-A7BC-00155D1F6C08",
+          "own": false,
+          "price": 1203.89,
+          "shipmentDate": "2026-10-30T13:40:00+03:00",
+          "stock": 1,
+          "warehouseShipping": "A8F1AF29-549E-11EF-A7D7-8058D39F901E"
+        }
+      ]
+    },
+    {
+      "brand": "HOFFER",
+      "count": 0,
+      "goodsID": "0BE3A1F0-DA56-4AA0-B63B-969957A0DB7C",
+      "name": "Прокладка",
+      "number": "01089",
+      "price": 377.95,
+      "rate": 1,
+      "warehouses": []
+    },
+    {
+      "brand": "SEINTEX",
+      "count": 0,
+      "goodsID": "39DA9214-0B1F-4D5E-A718-3CB87D38DC02",
+      "name": "Коврики салона к-кт",
+      "number": "01089",
+      "price": 0,
+      "rate": 1,
+      "warehouses": []
+    },
+    {
+      "brand": "SUPLEX",
+      "count": 0,
+      "goodsID": "97FCFAC5-AD6F-4A84-AEED-094EB672B82A",
+      "name": "Пружина подвески передняя",
+      "number": "01089",
+      "price": 0,
+      "rate": 1,
+      "warehouses": []
+    },
+    {
+      "brand": "Orjin Automotive",
+      "count": 0,
+      "goodsID": "DF02AAFE-9891-42FC-9690-FC2E9BC174AF",
+      "name": "Рычаг подвески",
+      "number": "01089",
+      "price": 0,
+      "rate": 1,
+      "warehouses": []
+    }
+  ]
+}
