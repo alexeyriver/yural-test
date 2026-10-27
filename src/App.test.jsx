@@ -152,3 +152,35 @@ test('a new article hides the offers table', async () => {
   expect(screen.queryByRole('table')).not.toBeInTheDocument();
   expect(screen.queryByText(/— предложения/)).not.toBeInTheDocument();
 });
+
+test('not found article shows an empty state', async () => {
+  fetchBrands.mockResolvedValue([]);
+  renderWithStore(<App />);
+
+  await user.type(screen.getByLabelText('Артикул'), '7260500039S');
+  await waitDebounce();
+
+  expect(await screen.findByText('Производители не найдены')).toBeInTheDocument();
+  expect(screen.queryByRole('table')).not.toBeInTheDocument();
+});
+
+test('full flow: article → brands → offers → stock filter', async () => {
+  fetchBrands.mockResolvedValue(BRANDS);
+  fetchOffers.mockResolvedValue([
+    offer('ASAM', true),
+    { ...offer('BOSCH'), id: 'BOSCH', price: null, stock: 0 },
+  ]);
+  renderWithStore(<App />);
+
+  await user.type(screen.getByLabelText('Артикул'), '01089');
+  await waitDebounce();
+  await user.click(await screen.findByRole('button', { name: /ASAM/ }));
+
+  const table = await screen.findByRole('table');
+  expect(within(table).getAllByRole('row')).toHaveLength(2);
+  expect(screen.getByTestId('offers-count')).toHaveTextContent('1 шт');
+
+  await user.click(screen.getByLabelText('Только в наличии'));
+  expect(within(screen.getByRole('table')).getAllByRole('row')).toHaveLength(3);
+  expect(screen.getByText('нет в наличии')).toBeInTheDocument();
+});
