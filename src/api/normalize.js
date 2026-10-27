@@ -6,6 +6,8 @@ const EMPTY_GOODS_ID = '00000000-0000-0000-0000-000000000000';
 const ERROR_MESSAGES = {
   'Empty key!': 'Не указан ключ API',
   'Invalid key client!': 'Неверный ключ API',
+  // Так отвечает живой API на неверный ключ (в документации — «Invalid key client!»)
+  'Invalid access key': 'Неверный ключ API',
   'Empty number goods!': 'Не указан артикул',
   'Request quota exceeded!': 'Превышен лимит запросов. Попробуйте позже.',
 };

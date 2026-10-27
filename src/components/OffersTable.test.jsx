@@ -4,7 +4,7 @@ import { setupStore } from '../store/index.js';
 import { loadOffers } from '../store/offersSlice.js';
 import { renderWithStore } from '../testUtils.jsx';
 import OffersTable from './OffersTable.jsx';
-import { NO_VALUE } from '../constants.js';
+import { NO_VALUE, OFFERS_PAGE_SIZE } from '../constants.js';
 
 const ARG = { number: '01089', brand: 'ASAM' };
 
@@ -107,4 +107,31 @@ test('turning the filter off shows offers without stock at the end', async () =>
     .map((cell) => cell.textContent);
   expect(last).toEqual(['BOSCH', '01089', 'Деталь', NO_VALUE, 'нет в наличии', NO_VALUE, NO_VALUE]);
   expect(screen.getByTestId('offers-count')).toHaveTextContent('4 шт');
+});
+
+describe('large lists', () => {
+  const many = Array.from({ length: 250 }, (_, i) =>
+    offer({ brand: `B${String(i).padStart(3, '0')}`, price: i + 1 }),
+  );
+
+  test('renders the first page and loads more on demand', async () => {
+    renderTable({}, pending, fulfilled(many));
+    expect(bodyRows()).toHaveLength(OFFERS_PAGE_SIZE);
+    expect(screen.getByText('Показано 100 из 250')).toBeInTheDocument();
+    expect(screen.getByTestId('offers-count')).toHaveTextContent('250 шт');
+
+    await userEvent.click(screen.getByRole('button', { name: 'Показать ещё 100' }));
+    expect(bodyRows()).toHaveLength(200);
+
+    await userEvent.click(screen.getByRole('button', { name: 'Показать ещё 50' }));
+    expect(bodyRows()).toHaveLength(250);
+    expect(screen.queryByRole('button', { name: /Показать ещё/ })).not.toBeInTheDocument();
+  });
+
+  test('changing the filter starts from the first page again', async () => {
+    renderTable({}, pending, fulfilled(many));
+    await userEvent.click(screen.getByRole('button', { name: 'Показать ещё 100' }));
+    await userEvent.click(screen.getByLabelText('Только в наличии'));
+    expect(bodyRows()).toHaveLength(OFFERS_PAGE_SIZE);
+  });
 });

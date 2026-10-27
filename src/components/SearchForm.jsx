@@ -8,12 +8,13 @@ export default function SearchForm({ onSearch }) {
   const [value, setValue] = useState('');
   const number = value.trim();
   const debounced = useDebounce(number, DEBOUNCE_MS);
-  // Не повторяем запрос, если Enter уже отправил этот же артикул до срабатывания debounce
+  // Debounce не повторяет уже отправленный артикул (например, Enter до конца паузы);
+  // Enter и кнопка — явное действие и ищут всегда
   const lastSearched = useRef('');
 
   const search = useCallback(
     (query) => {
-      if (query.length < MIN_LENGTH || query === lastSearched.current) return;
+      if (query.length < MIN_LENGTH) return;
       lastSearched.current = query;
       onSearch(query);
     },
@@ -21,7 +22,7 @@ export default function SearchForm({ onSearch }) {
   );
 
   useEffect(() => {
-    search(debounced);
+    if (debounced !== lastSearched.current) search(debounced);
   }, [debounced, search]);
 
   const handleSubmit = (event) => {

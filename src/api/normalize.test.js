@@ -117,6 +117,7 @@ describe('translateError', () => {
   test.each([
     ['Empty key!', 'Не указан ключ API'],
     ['Invalid key client!', 'Неверный ключ API'],
+    ['Invalid access key', 'Неверный ключ API'],
     ['Empty number goods!', 'Не указан артикул'],
     ['Request quota exceeded!', 'Превышен лимит запросов. Попробуйте позже.'],
   ])('%s', (message, expected) => {

@@ -68,3 +68,10 @@ test('a changed article is searched again', async () => {
   await waitDebounce();
   expect(onSearch.mock.calls).toEqual([['01089'], ['7160500039S']]);
 });
+
+test('Enter on the same article searches again', async () => {
+  await user.type(input(), '01089');
+  await waitDebounce();
+  await user.keyboard('{Enter}');
+  expect(onSearch.mock.calls).toEqual([['01089'], ['01089']]);
+});

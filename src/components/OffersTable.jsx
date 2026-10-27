@@ -1,14 +1,18 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectOffers, selectVisibleOffers, toggleOnlyInStock } from '../store/offersSlice.js';
 import { formatDate, formatPrice } from '../utils/format.js';
 import EmptyState from './EmptyState.jsx';
 import ErrorAlert from './ErrorAlert.jsx';
 import Loader from './Loader.jsx';
-import { STATUS } from '../constants.js';
+import { OFFERS_PAGE_SIZE, STATUS } from '../constants.js';
 
 function OffersBody({ onRetry }) {
   const { items, status, error, onlyInStock } = useSelector(selectOffers);
   const visible = useSelector(selectVisibleOffers);
+  const [limit, setLimit] = useState(OFFERS_PAGE_SIZE);
+  const shown = visible.slice(0, limit);
+  const rest = visible.length - shown.length;
 
   if (status === STATUS.LOADING) return <Loader />;
   if (status === STATUS.FAILED) return <ErrorAlert message={error} onRetry={onRetry} />;
@@ -18,53 +22,69 @@ function OffersBody({ onRetry }) {
   }
 
   return (
-    <div className="table-responsive">
-      <table className="table table-striped table-hover table-sm align-middle">
-        <thead>
-          <tr>
-            <th scope="col">Производитель</th>
-            <th scope="col">Номер</th>
-            <th scope="col">Название</th>
-            <th scope="col" className="text-end">
-              Цена
-            </th>
-            <th scope="col" className="text-end">
-              Остаток
-            </th>
-            <th scope="col">Склад</th>
-            <th scope="col">Отгрузка</th>
-          </tr>
-        </thead>
-        <tbody>
-          {visible.map((offer) => (
-            <tr key={offer.id}>
-              <td className="text-nowrap">
-                {offer.brand}
-                {offer.isOriginal && <span className="badge text-bg-primary ms-2">Оригинал</span>}
-              </td>
-              <td className="text-nowrap">{offer.number}</td>
-              <td>{offer.name}</td>
-              <td className="text-end text-nowrap">{formatPrice(offer.price)}</td>
-              <td className="text-end text-nowrap">
-                {offer.stock > 0 ? (
-                  offer.stock
-                ) : (
-                  <span className="text-body-secondary">нет в наличии</span>
-                )}
-              </td>
-              <td className="text-nowrap">{offer.warehouse}</td>
-              <td className="text-nowrap">{formatDate(offer.shipmentDate)}</td>
+    <>
+      <div className="table-responsive">
+        <table className="table table-striped table-hover table-sm align-middle">
+          <thead>
+            <tr>
+              <th scope="col">Производитель</th>
+              <th scope="col">Номер</th>
+              <th scope="col">Название</th>
+              <th scope="col" className="text-end">
+                Цена
+              </th>
+              <th scope="col" className="text-end">
+                Остаток
+              </th>
+              <th scope="col">Склад</th>
+              <th scope="col">Отгрузка</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {shown.map((offer) => (
+              <tr key={offer.id}>
+                <td className="text-nowrap">
+                  {offer.brand}
+                  {offer.isOriginal && <span className="badge text-bg-primary ms-2">Оригинал</span>}
+                </td>
+                <td className="text-nowrap">{offer.number}</td>
+                <td>{offer.name}</td>
+                <td className="text-end text-nowrap">{formatPrice(offer.price)}</td>
+                <td className="text-end text-nowrap">
+                  {offer.stock > 0 ? (
+                    offer.stock
+                  ) : (
+                    <span className="text-body-secondary">нет в наличии</span>
+                  )}
+                </td>
+                <td className="text-nowrap">{offer.warehouse}</td>
+                <td className="text-nowrap">{formatDate(offer.shipmentDate)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {rest > 0 && (
+        <div className="d-flex flex-wrap align-items-center gap-3">
+          <span className="text-body-secondary">
+            Показано {shown.length} из {visible.length}
+          </span>
+          <button
+            type="button"
+            className="btn btn-outline-primary btn-sm"
+            onClick={() => setLimit(limit + OFFERS_PAGE_SIZE)}
+          >
+            Показать ещё {Math.min(rest, OFFERS_PAGE_SIZE)}
+          </button>
+        </div>
+      )}
+    </>
   );
 }
 
 export default function OffersTable({ onRetry }) {
   const dispatch = useDispatch();
-  const { selected, status, onlyInStock } = useSelector(selectOffers);
+  const { selected, status, onlyInStock, requestId } = useSelector(selectOffers);
   const visible = useSelector(selectVisibleOffers);
 
   if (!selected) return null;
@@ -93,7 +113,8 @@ export default function OffersTable({ onRetry }) {
           </span>
         )}
       </div>
-      <OffersBody onRetry={onRetry} />
+      {/* Новая загрузка или смена фильтра — снова первая порция строк */}
+      <OffersBody key={`${requestId}-${onlyInStock}`} onRetry={onRetry} />
     </>
   );
 }
