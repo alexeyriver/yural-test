@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { fetchOffers } from '../api/favoritApi.js';
 import { searchBrands } from './brandsSlice.js';
+import { STATUS } from '../constants.js';
 
 export const loadOffers = createAsyncThunk('offers/load', ({ number, brand }, { signal }) =>
   fetchOffers(number, brand, signal),
@@ -9,7 +10,7 @@ export const loadOffers = createAsyncThunk('offers/load', ({ number, brand }, { 
 const initialState = {
   selected: null,
   items: [],
-  status: 'idle',
+  status: STATUS.IDLE,
   error: null,
   requestId: null,
   onlyInStock: true,
@@ -33,18 +34,18 @@ const offersSlice = createSlice({
       .addCase(loadOffers.pending, (state, action) => {
         state.selected = { number: action.meta.arg.number, brand: action.meta.arg.brand };
         state.items = [];
-        state.status = 'loading';
+        state.status = STATUS.LOADING;
         state.error = null;
         state.requestId = action.meta.requestId;
       })
       .addCase(loadOffers.fulfilled, (state, action) => {
         if (action.meta.requestId !== state.requestId) return;
         state.items = action.payload;
-        state.status = 'succeeded';
+        state.status = STATUS.SUCCEEDED;
       })
       .addCase(loadOffers.rejected, (state, action) => {
         if (action.meta.aborted || action.meta.requestId !== state.requestId) return;
-        state.status = 'failed';
+        state.status = STATUS.FAILED;
         state.error = action.error.message;
       });
   },

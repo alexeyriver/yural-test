@@ -2,6 +2,7 @@ import { fetchBrands, fetchOffers } from '../api/favoritApi.js';
 import { searchBrands } from './brandsSlice.js';
 import { setupStore } from './index.js';
 import { loadOffers, selectVisibleOffers, toggleOnlyInStock } from './offersSlice.js';
+import { STATUS } from '../constants.js';
 
 vi.mock('../api/favoritApi.js', () => ({
   fetchBrands: vi.fn(),
@@ -42,14 +43,14 @@ describe('brands', () => {
     fetchBrands.mockReturnValue(d.promise);
 
     const promise = store.dispatch(searchBrands('01089'));
-    expect(store.getState().brands).toMatchObject({ query: '01089', status: 'loading' });
+    expect(store.getState().brands).toMatchObject({ query: '01089', status: STATUS.LOADING });
     expect(fetchBrands).toHaveBeenCalledWith('01089', expect.any(AbortSignal));
 
     d.resolve(BRANDS);
     await promise;
     expect(store.getState().brands).toMatchObject({
       items: BRANDS,
-      status: 'succeeded',
+      status: STATUS.SUCCEEDED,
       error: null,
     });
   });
@@ -58,7 +59,7 @@ describe('brands', () => {
     fetchBrands.mockRejectedValue(new Error('Нет связи с сервером. Проверьте подключение.'));
     await store.dispatch(searchBrands('01089'));
     expect(store.getState().brands).toMatchObject({
-      status: 'failed',
+      status: STATUS.FAILED,
       error: 'Нет связи с сервером. Проверьте подключение.',
     });
   });
@@ -68,7 +69,11 @@ describe('brands', () => {
     await store.dispatch(searchBrands('01089'));
     fetchBrands.mockReturnValue(new Promise(() => {}));
     store.dispatch(searchBrands('01090'));
-    expect(store.getState().brands).toMatchObject({ items: [], status: 'loading', error: null });
+    expect(store.getState().brands).toMatchObject({
+      items: [],
+      status: STATUS.LOADING,
+      error: null,
+    });
   });
 
   test('aborted request does not set failed', async () => {
@@ -76,7 +81,7 @@ describe('brands', () => {
     const promise = store.dispatch(searchBrands('01089'));
     promise.abort();
     await promise;
-    expect(store.getState().brands.status).not.toBe('failed');
+    expect(store.getState().brands.status).not.toBe(STATUS.FAILED);
     expect(store.getState().brands.error).toBeNull();
   });
 
@@ -94,7 +99,7 @@ describe('brands', () => {
 
     expect(store.getState().brands).toMatchObject({
       query: '7160500039S',
-      status: 'succeeded',
+      status: STATUS.SUCCEEDED,
       items: [{ brand: 'MEYLE' }],
     });
   });
@@ -108,19 +113,19 @@ describe('offers', () => {
     const promise = store.dispatch(loadOffers({ number: '01089', brand: 'ASAM' }));
     expect(store.getState().offers).toMatchObject({
       selected: { number: '01089', brand: 'ASAM' },
-      status: 'loading',
+      status: STATUS.LOADING,
     });
     expect(fetchOffers).toHaveBeenCalledWith('01089', 'ASAM', expect.any(AbortSignal));
 
     await promise;
-    expect(store.getState().offers).toMatchObject({ items, status: 'succeeded' });
+    expect(store.getState().offers).toMatchObject({ items, status: STATUS.SUCCEEDED });
   });
 
   test('rejected → failed, selected kept for retry', async () => {
     fetchOffers.mockRejectedValue(new Error('Неверный ключ API'));
     await store.dispatch(loadOffers({ number: '01089', brand: 'ASAM' }));
     expect(store.getState().offers).toMatchObject({
-      status: 'failed',
+      status: STATUS.FAILED,
       error: 'Неверный ключ API',
       selected: { number: '01089', brand: 'ASAM' },
     });
@@ -131,7 +136,7 @@ describe('offers', () => {
     const promise = store.dispatch(loadOffers({ number: '01089', brand: 'ASAM' }));
     promise.abort();
     await promise;
-    expect(store.getState().offers.status).not.toBe('failed');
+    expect(store.getState().offers.status).not.toBe(STATUS.FAILED);
   });
 
   test('stale brand response does not overwrite the latest one', async () => {
@@ -162,7 +167,7 @@ describe('offers', () => {
     expect(store.getState().offers).toMatchObject({
       selected: null,
       items: [],
-      status: 'idle',
+      status: STATUS.IDLE,
       error: null,
       onlyInStock: false,
     });

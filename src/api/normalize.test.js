@@ -2,6 +2,7 @@ import brands from '../../tests/fixtures/brands.json';
 import analogues from '../../tests/fixtures/analogues.json';
 import notFound from '../../tests/fixtures/notFound.json';
 import { isEmptyGoods, toBrands, toOffers, translateError } from './normalize.js';
+import { NO_VALUE } from '../constants.js';
 
 const good = (overrides) => ({
   goodsID: 'G1',
@@ -89,7 +90,12 @@ describe('toOffers', () => {
   test('goods without warehouses give one row without price', () => {
     const bosch = toOffers(analogues.goods).filter((o) => o.brand === 'BOSCH');
     expect(bosch).toHaveLength(1);
-    expect(bosch[0]).toMatchObject({ price: null, stock: 0, warehouse: '—', shipmentDate: null });
+    expect(bosch[0]).toMatchObject({
+      price: null,
+      stock: 0,
+      warehouse: NO_VALUE,
+      shipmentDate: null,
+    });
     expect(bosch[0].id).toMatch(/-none$/);
   });
 
@@ -99,7 +105,7 @@ describe('toOffers', () => {
         warehouses: [{ id: 'W1', code: '', own: false, price: 50, stock: 3, shipmentDate: null }],
       }),
     ]);
-    expect(offer).toMatchObject({ id: 'G1-W1', warehouse: '—', price: 50, stock: 3 });
+    expect(offer).toMatchObject({ id: 'G1-W1', warehouse: NO_VALUE, price: 50, stock: 3 });
   });
 
   test('not found stub gives empty list', () => {

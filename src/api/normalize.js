@@ -1,3 +1,5 @@
+import { NO_VALUE } from '../constants.js';
+
 // API на «не найдено» отвечает заглушкой с нулевым goodsID
 const EMPTY_GOODS_ID = '00000000-0000-0000-0000-000000000000';
 
@@ -37,7 +39,7 @@ function itemToOffers(item, isOriginal) {
         id: `${item.goodsID}-none`,
         price: null,
         stock: 0,
-        warehouse: '—',
+        warehouse: NO_VALUE,
         shipmentDate: null,
       },
     ];
@@ -47,7 +49,7 @@ function itemToOffers(item, isOriginal) {
     id: `${item.goodsID}-${w.id}`,
     price: w.price,
     stock: w.stock,
-    warehouse: w.code || '—',
+    warehouse: w.code || NO_VALUE,
     shipmentDate: w.shipmentDate || null,
   }));
 }

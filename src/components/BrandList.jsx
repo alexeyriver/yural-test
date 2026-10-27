@@ -4,16 +4,17 @@ import { selectOffers } from '../store/offersSlice.js';
 import EmptyState from './EmptyState.jsx';
 import ErrorAlert from './ErrorAlert.jsx';
 import Loader from './Loader.jsx';
+import { STATUS } from '../constants.js';
 
 export default function BrandList({ onSelect, onRetry }) {
   const { items, status, error } = useSelector(selectBrands);
   const { selected } = useSelector(selectOffers);
 
-  if (status === 'idle') {
+  if (status === STATUS.IDLE) {
     return <p className="text-body-secondary">Введите артикул, чтобы увидеть производителей</p>;
   }
-  if (status === 'loading') return <Loader />;
-  if (status === 'failed') return <ErrorAlert message={error} onRetry={onRetry} />;
+  if (status === STATUS.LOADING) return <Loader />;
+  if (status === STATUS.FAILED) return <ErrorAlert message={error} onRetry={onRetry} />;
   if (items.length === 0) return <EmptyState>Производители не найдены</EmptyState>;
 
   return (
